@@ -1,0 +1,33 @@
+networks:
+  dev:
+    driver: bridge  
+services:
+
+  api:
+    image: ${DOCKER_REGISTRY-}api
+    container_name: api_container
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - dev
+    depends_on:
+      - postgres_data
+
+  postgres_data:
+    image: postgres:latest
+    restart: always
+    container_name: postgres_container
+    environment: 
+      - POSTGRES_DB=OnlineSurveyBd
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+    ports:
+      - 5432:5432
+    networks:
+      - dev

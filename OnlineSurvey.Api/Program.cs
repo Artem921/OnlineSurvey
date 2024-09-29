@@ -1,4 +1,5 @@
 using Framework.Utils;
+using Microsoft.OpenApi.Models;
 using OnlineSurvey.Api.Mapping;
 using OnlineSurvey.Application;
 using OnlineSurvey.Infrastructure;
@@ -7,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers()
-              .ConfigureApplicationPartManager(manager => manager.FeatureProviders.Add(new InternalControllerFeatureProvider()));
+              .ConfigureApplicationPartManager(manager => manager.FeatureProviders.Add(new InternalControllerFeatureProvider()))
+              .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -18,7 +20,21 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo 
+    { 
+        Version ="v1",
+        Title = "Online Survey",
+
+    });
+
+    var basePath = AppContext.BaseDirectory;
+    var xmlPath = Path.Combine(basePath, "OnlineSurvey.xml");
+    options.IncludeXmlComments(xmlPath);
+
+
+});
 builder.Services.AddInfrastructureMapping();
 builder.Services.RegisterModule<InfrastructureExtension>(builder.Configuration);
 builder.Services.RegisterModule<ApplicationExtension>(builder.Configuration);

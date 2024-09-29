@@ -6,9 +6,7 @@ namespace OnlineSurvey.Application.Services.Abstraction
     internal interface IInterviewService
     {
         public Task AddAsync(InterviewDto interview);
-        public Task UpdateAsync(string interviewId,int questionId, string quaere, List<string> results);
-        public Task DeleteAsync(string id);
+        public Task<int> UpdateAsync(string interviewId, int surveyId, int questionId, string quaere, List<string> results);
         public Task<InterviewDto?> GetByIdAsync(string id);
-        public Task<List<Interview>?> GetAllAsync();
     }
 }

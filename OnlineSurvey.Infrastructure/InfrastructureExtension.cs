@@ -11,8 +11,7 @@ namespace OnlineSurvey.Infrastructure
         {
             services.AddScoped<IInterviewRepository, InterviewRepository>();
             services.AddScoped<ISurveyRepository, SurveyRepository>();
-            services.AddDbContext<AppDbContext>();
-
+            services.AddScoped<AppDbContext>();
         }
     }
 }

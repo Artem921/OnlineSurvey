@@ -10,7 +10,7 @@ namespace OnlineSurvey.Infrastructure.Configurations
         {
             builder.ToTable("Questions").HasKey(q => q.Id);
             builder.Property(q => q.Quaere).HasColumnName("Quaere");
-
+            builder.HasIndex(q => q.Id).IsUnique();
             builder.HasOne(s => s.Survey)
                 .WithMany(q => q.Questions)
                 .HasForeignKey(q => q.SurveyId);
@@ -19,15 +19,15 @@ namespace OnlineSurvey.Infrastructure.Configurations
                 .WithOne(q => q.Question)
                 .HasForeignKey<Answer>(a=> a.QuestionId);
 
-            //builder.HasData(
-            //    Question.Create("1", "1", "Ваш любимый жанр",1),
-            //    Question.Create("2", "1", "Выбирите двух актёров, которые вам симпатизируют из этого списка", 2),
-            //    Question.Create("3", "1", "В какое время суток вы смотрите фильм",3),
+            builder.HasData(
+                Question.Create(1,1, "Ваш любимый жанр"),
+                Question.Create(2,1, "Выбирите двух актёров, которые вам симпатизируют из этого списка"),
+                Question.Create(3,1, "В какое время суток вы смотрите фильм"),
 
-            //    Question.Create("4", "2", "Качество обслуживания",1),
-            //    Question.Create("5", "2", "Решил ли он вашь вопрос",1),
-            //    Question.Create("6", "2", "Оценка работы сотрудника",1)
-            //    );
+                Question.Create(4,2, "Качество обслуживания"),
+                Question.Create(5,2, "Решил ли он вашь вопрос"),
+                Question.Create(6,2, "Оценка работы сотрудника")
+                );
                 
 
         }

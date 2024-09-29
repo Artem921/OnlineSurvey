@@ -1,4 +1,6 @@
-﻿namespace OnlineSurvey.Api.Models
+﻿using OnlineSurvey.Domian.Entities;
+
+namespace OnlineSurvey.Api.Models
 {
     public class SurveyModel
     {

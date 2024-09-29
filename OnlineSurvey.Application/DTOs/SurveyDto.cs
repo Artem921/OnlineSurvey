@@ -1,4 +1,6 @@
-﻿namespace OnlineSurvey.Application.DTOs
+﻿using OnlineSurvey.Domian.Entities;
+
+namespace OnlineSurvey.Application.DTOs
 {
     internal class SurveyDto
     {

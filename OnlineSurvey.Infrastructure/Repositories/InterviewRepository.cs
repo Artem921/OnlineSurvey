@@ -21,13 +21,14 @@ namespace OnlineSurvey.Infrastructure.Repositories
                 {
                     await context.Interviews.AddAsync(interview);
                     await context.SaveChangesAsync();
+                    transaction.Commit();
                 }
-                catch (Exception ex) { transaction.Rollback(); }
+                catch  { transaction.Rollback(); }
             }
                
         }
 
-        public async Task<Interview?> GetByIdAsync(string id) => await context.Interviews.FirstOrDefaultAsync(i => i.Id == id);
+        public async Task<Interview?> GetByIdAsync(string id) => await context.Interviews.Include(r => r.Results).FirstOrDefaultAsync(i => i.Id == id);
 
         public async Task UpdateAsync(Interview interview)
         {
@@ -36,26 +37,32 @@ namespace OnlineSurvey.Infrastructure.Repositories
             {
                 try
                 {
-                    var interviewOld = await context.Interviews.Include(r => r.Results).FirstOrDefaultAsync(i => i.Id == interview.Id);
-                    interviewOld = interview;
+                    var interviewOld = await GetByIdAsync(interview.Id);
+                    await DeleteAsync(interviewOld);
+                    await context.Interviews.AddAsync(interview);
                     await context.SaveChangesAsync();
+                    transaction.Commit();
 
                 }
-                catch (Exception ex) { transaction.Rollback(); }
+                catch { transaction.Rollback(); }
                
             }
                
         }
         public async Task DeleteAsync(Interview interview) 
-        {           
-              await Task.Run(() => context.Interviews.Remove(interview));
-
-              await context.SaveChangesAsync();           
-        }
-
-        public async Task<List<Interview>?> GetAllAsync()
         {
-            return await context.Interviews.ToListAsync();
+
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    await Task.Run(() => context.Interviews.Remove(interview));
+                    await context.SaveChangesAsync();
+                }
+                catch { transaction.Rollback(); }
+                
+            }
+                        
         }
     }
 }

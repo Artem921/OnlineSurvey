@@ -15,7 +15,18 @@ namespace OnlineSurvey.Api.Controllers
         {
             this.surveyService = surveyService;
         }
-
+        /// <summary>
+        /// Возвращает конкретный вопрос с вариантами ответов
+        /// </summary>
+        /// <param name="surveyId">Id опросника (Survey)</param> 
+        /// <param name="questionId">Id вопроса (Question)</param> 
+        /// 
+        /// Пример запроса:
+        /// 
+        /// questionId = 1
+        /// surveyId = 1
+        /// 
+        /// <returns name="questionModel">Возвращает QuestionModel</returns>
         [Route("GetQuestion")]
         [HttpGet]
         public async Task<IActionResult>GetQuestionAsync(int surveyId,int questionId)

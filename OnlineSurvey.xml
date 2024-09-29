@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OnlineSurvey.Api</name>
+    </assembly>
+    <members>
+        <member name="M:OnlineSurvey.Api.Controllers.InterviewController.AddResultAsync(System.Int32,System.Int32,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Сохранет вопрос и ответы в бд и возвращает Id следующего вопроса
+            </summary>
+            <param name="questionId">Id вопроса (Question)</param> 
+            <param name="surveyId">Id опросника (Survey)</param> 
+            <param name="quaere">Текст вопроса</param> 
+            <param name="results">Выбранные ответы</param> 
+            <returns name ="quenceId">Следующий Id вопроса (Question) </returns>
+        </member>
+        <member name="M:OnlineSurvey.Api.Controllers.SurveyController.GetQuestionAsync(System.Int32,System.Int32)">
+            <summary>
+            Возвращает конкретный вопрос с вариантами ответов
+            </summary>
+            <param name="surveyId">Id опросника (Survey)</param> 
+            <param name="questionId">Id вопроса (Question)</param> 
+            
+            Пример запроса:
+            
+            questionId = 1
+            surveyId = 1
+            
+            <returns name="questionModel">Возвращает QuestionModel</returns>
+        </member>
+    </members>
+</doc>

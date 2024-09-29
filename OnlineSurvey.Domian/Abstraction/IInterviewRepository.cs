@@ -8,6 +8,5 @@ namespace OnlineSurvey.Domian.Abstraction
         public Task UpdateAsync(Interview interview); 
         public Task DeleteAsync(Interview interview);
         public Task<Interview?> GetByIdAsync(string id);
-        public Task<List<Interview>?> GetAllAsync();
     }
 }

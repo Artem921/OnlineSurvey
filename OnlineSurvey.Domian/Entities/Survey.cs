@@ -1,14 +1,20 @@
 ﻿using OnlineSurvey.Domian.Entities.Base;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineSurvey.Domian.Entities
 {
     internal class Survey : Entity
-    {   
+    {
+        /// <summary>
+        /// Наименование опроса
+        /// </summary>
         public string Name { get; set; } = string.Empty;
+        /// <summary>
+        /// описание опроса
+        /// </summary>
         public string Discription { get; set; } = string.Empty;
         public IEnumerable<Question> Questions { get; set; } = null!;
 
+        public Survey() { }
         private Survey(int id,string name,string discription)
         {
            Id = id;

@@ -15,8 +15,6 @@ namespace OnlineSurvey.Api.Mapping
                 .RequireDestinationMemberSource(true);
             config.NewConfig<AnswerModel, AnswerDto>()
                 .RequireDestinationMemberSource(true);
-            config.NewConfig<InterviewModel, InterviewDto>()
-                .RequireDestinationMemberSource(true);
             config.NewConfig<ResultModel, ResultDto>()
                 .RequireDestinationMemberSource(true);
         }

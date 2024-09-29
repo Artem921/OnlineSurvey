@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineSurvey.Domian.Abstraction;
 using OnlineSurvey.Domian.Entities;
+
 namespace OnlineSurvey.Infrastructure.Repositories
 {
     internal class SurveyRepository : ISurveyRepository
@@ -11,24 +12,27 @@ namespace OnlineSurvey.Infrastructure.Repositories
         {
             this.context = context;
         }
+
         public async Task<Question> GetQuestionByIdAsync(int surveyId, int questionId)
         {
-
-            var survey = await context.Surveys.Include(q => q.Questions).FirstOrDefaultAsync(s => s.Id == surveyId);
+            var survey = await GetSurveyByIdAsync(surveyId);
 
             if (survey != null)
             {
+                var question = await Task.Run(()=> survey.Questions.FirstOrDefault(s => s.Id == questionId));
 
-                var question = await context.Questions.Include(a => a.Answer).Where(q => q.Id == survey.Id).FirstOrDefaultAsync(s => s.Id == questionId);
-
-                if (question != null) return question;
-
-                else return null;
+                 return question;
             }
 
             else return null;
         }
 
-        
+        public async Task<Survey> GetSurveyByIdAsync(int id)
+        {
+            var survey = await context.Surveys.Include(q => q.Questions)
+                                             .ThenInclude(a => a.Answer)
+                                             .FirstOrDefaultAsync(s => s.Id == id);
+            return survey;
+        }
     }
 }

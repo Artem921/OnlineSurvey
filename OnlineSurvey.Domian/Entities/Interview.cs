@@ -1,12 +1,9 @@
-﻿using OnlineSurvey.Domian.Entities.Base;
-
-namespace OnlineSurvey.Domian.Entities
+﻿namespace OnlineSurvey.Domian.Entities
 {
     internal class Interview
     {
         public string Id { get; set; } = string.Empty;
-        public string SurveyId { get; set; } = string.Empty;
-        public List<Result> Results { get; set; } 
+        public ICollection<Result> Results { get; set; } = null!;
 
         public Interview() { }
         private Interview(string id) 

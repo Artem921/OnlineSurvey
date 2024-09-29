@@ -16,11 +16,11 @@ namespace OnlineSurvey.Infrastructure.Configurations
                 .WithOne(q => q.Survey)
                 .HasForeignKey(q => q.SurveyId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            //builder.HasData(
-            //    Survey.Create("1", "Фильмы", "Анонимный опрос для статистики "),
-            //    Survey.Create("2", "Оценка качества работы сотрудника", "Анонимный опрос для улучшение качества ")
-            //    );
+                   
+            builder.HasData(
+                Survey.Create(1, "Фильмы", "Анонимный опрос для статистики "),
+                Survey.Create(2, "Оценка качества работы сотрудника", "Анонимный опрос для улучшение качества ")
+                );
         }
     }
 }

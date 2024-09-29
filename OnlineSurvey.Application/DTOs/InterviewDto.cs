@@ -1,9 +1,11 @@
-﻿namespace OnlineSurvey.Application.DTOs
+﻿using OnlineSurvey.Domian.Entities;
+
+namespace OnlineSurvey.Application.DTOs
 {
     internal class InterviewDto
     {
         public string Id { get; set; }
-        public int SurveyId { get; set; }
-        public List<ResultDto> Results { get; set; } = null!;
+        public ICollection<ResultDto> Results { get; set; } = null!;
+
     }
 }

@@ -3,7 +3,6 @@
     internal class QuestionDto
     {
         public int Id { get; set; }
-        public int NumberOfAnswers { get; set; }
         public string Quaere { get; set; } = null!;
         public AnswerDto Answer { get; set; } = null!;
     }

@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineSurvey.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineSurvey.Infrastructure", "OnlineSurvey.Infrastructure\OnlineSurvey.Infrastructure.csproj", "{B946F693-B31F-4348-BA5B-625453A12F2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{82418DE3-3F64-4424-BA73-7487CC4AC2A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework", "Framework\Framework.csproj", "{82418DE3-3F64-4424-BA73-7487CC4AC2A8}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{33F80C28-97FD-4547-B954-81CE090ADAA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{82418DE3-3F64-4424-BA73-7487CC4AC2A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82418DE3-3F64-4424-BA73-7487CC4AC2A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82418DE3-3F64-4424-BA73-7487CC4AC2A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33F80C28-97FD-4547-B954-81CE090ADAA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33F80C28-97FD-4547-B954-81CE090ADAA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33F80C28-97FD-4547-B954-81CE090ADAA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33F80C28-97FD-4547-B954-81CE090ADAA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
