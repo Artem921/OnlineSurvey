@@ -8,6 +8,21 @@ docker-compose up
 ```
 System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
 ```
+#### Тогда вам нужно сгенерировать самоподписанный сертификат. Для этого запустите PowerShell от имени администратора или оболочку CMD.
+#### Введите следующую инструкцию:
+PowerShell
+```
+dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p $CREDENTIAL_PLACEHOLDER$
+dotnet dev-certs https --trust
+```
+CMD
+```
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
+dotnet dev-certs https --trust
+```
+#### $CREDENTIAL_PLACEHOLDER$ -  вашь пароль.
+
+
 
 #### Стек проекта:
 + <sup> Asp Net Core Web Api </sup>
