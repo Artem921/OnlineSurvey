@@ -4,6 +4,10 @@
 ```
 docker-compose up
 ```
+#### Если в конце сборки образа получите ошибку:
+```
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+```
 
 #### Стек проекта:
 + <sup> Asp Net Core Web Api </sup>
