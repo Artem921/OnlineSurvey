@@ -9,7 +9,7 @@ docker-compose up
 docker-compose up
 ```
 
-![#f03c15] ####  Если в конце сборки образа получите ошибку:
+####  Если в конце сборки образа получите ошибку:
 ```
 System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
 ```
@@ -18,7 +18,7 @@ System.InvalidOperationException: Unable to configure HTTPS endpoint. No server 
 #### Примечание. У вас должен быть установлен NET.CLI
 PowerShell
 ```
-dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p $CREDENTIAL_PLACEHOLDER$
+dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p PASSWORD
 dotnet dev-certs https --trust
 ```
 CMD
@@ -26,19 +26,19 @@ CMD
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
-#### $CREDENTIAL_PLACEHOLDER$ -  вашь пароль.
+#### PASSWORD -  вашь пароль.
 #### В файле docker-compose.yml, в окружении сервиса onlinesurvey.api укажите свой пароль
 ```
  environment:
    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
-   - ASPNETCORE_Kestrel__Certificates__Default__Password=rtx
+   - ASPNETCORE_Kestrel__Certificates__Default__Password=ВАШЬ ПАРОЛЬ
 ```
 
 
 #### Стек проекта:
 + <sup> Asp Net Core Web Api </sup>
 + <sup> Docker </sup>
-+ <sup> Entity Framework </sup>
++ <sup> Mapster </sup>
 + <sup> PostgresSQL </sup>
 
 ## <sup> Архитектура </sup>
@@ -60,7 +60,7 @@ Question - Result - один к одному ( у одногоуникально
 
 
 
-#### Каа работает api:
+#### Как работает api:
 ```
 // Принимает Id вопроса и возвращает название вопроса и варианты ответов
 async Task<IActionResult>GetQuestionAsync(int questionId)
