@@ -8,8 +8,8 @@ docker-compose up
 ```
 docker-compose up
 ```
-> [!WARNING]
-#### Если в конце сборки образа получите ошибку:
+
+![#f03c15] ####  Если в конце сборки образа получите ошибку:
 ```
 System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
 ```
@@ -27,7 +27,7 @@ dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENT
 dotnet dev-certs https --trust
 ```
 #### $CREDENTIAL_PLACEHOLDER$ -  вашь пароль.
-### В файле docker-compose.yml, в окружении сервиса onlinesurvey.api укажите свой пароль
+#### В файле docker-compose.yml, в окружении сервиса onlinesurvey.api укажите свой пароль
 ```
  environment:
    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
