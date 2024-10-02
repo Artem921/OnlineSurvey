@@ -4,6 +4,11 @@
 ```
 docker-compose up
 ```
+#### Ссылка приложения:
+```
+docker-compose up
+```
+>[!WARNING]
 #### Если в конце сборки образа получите ошибку:
 ```
 System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
@@ -22,8 +27,12 @@ dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENT
 dotnet dev-certs https --trust
 ```
 #### $CREDENTIAL_PLACEHOLDER$ -  вашь пароль.
-#### В файле docker-compose.yml
-
+### В файле docker-compose.yml, в окружении сервиса onlinesurvey.api укажите свой пароль
+```
+ environment:
+   - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+   - ASPNETCORE_Kestrel__Certificates__Default__Password=rtx
+```
 
 
 #### Стек проекта:
@@ -38,3 +47,30 @@ dotnet dev-certs https --trust
 + <sup> .Domain - Ядро приложени.</sup>
 + <sup> .Application - Здесь Бизнес логика. </sup>
 + <sup> .Api - Уровень представления </sup>
+
+#### Связи между сущностями в бд:
+```
+Survey - Question - один к многим (у одного опроса множество вопросов)
+Survey - Interview - многие к многим ( у одного опроса множество интервью и на оборот)
+Interview -Result - один к многим (у одного интервью множество ответов на вопрос)
+Question - Answer - один к одному ( у одного уникального вопроса может быть только один уникальный вариант ответов)
+Question - Result - один к одному ( у одногоуникального вопроса может быть только один уникальный ответ)
+```
+Структура бд:
+
+
+
+#### Каа работает api:
+```
+// Принимает Id вопроса и возвращает название вопроса и варианты ответов
+async Task<IActionResult>GetQuestionAsync(int questionId)
+
+// Принимает Id вопроса и список выбраных ответов
+// Далее сохраняет в бд и возвращает Id следующего вопроса
+async Task<IActionResult> AddResultAsync(int questionId, List<string> results)
+```
+
+
+
+
+
