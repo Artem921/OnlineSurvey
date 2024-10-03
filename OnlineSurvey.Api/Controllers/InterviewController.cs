@@ -14,30 +14,34 @@ namespace OnlineSurvey.Api.Controllers
             this.interviewService = interviewService;
         }
 
+
         /// <summary>
         /// Сохранет вопрос и ответы в бд и возвращает Id следующего вопроса
         /// </summary>
-        /// <param name="questionId">Id вопроса (Question)</param> 
-        /// <param name="surveyId">Id опросника (Survey)</param> 
-        /// <param name="quaere">Текст вопроса</param> 
-        /// <param name="results">Выбранные ответы</param> 
-        /// <returns name ="quenceId">Следующий Id вопроса (Question) </returns>
+        /// <param name="questionId"> Id вопроса (Question)</param> 
+        /// <param name="results"> Выбранные ответы</param> 
+        /// <returns > Возвращает Следующий Id вопроса (Question) </returns>
         [Route("AddResult")]
         [HttpPost]
-        public async Task<IActionResult> AddResultAsync(int questionId,int surveyId, string quaere, List<string> results)
+        public async Task<IActionResult> AddResultAsync(int questionId, List<string> results)
         {
             var sessionId = HttpContext.Session.GetString("sessionId");
-
+            Console.WriteLine(sessionId);
             if (sessionId == null)
-            {     
+            {
                 sessionId = HttpContext.Session.Id;
                 HttpContext.Session.SetString("sessionId", sessionId);
+                var nextQuestionId = await interviewService.AddAsync(sessionId, questionId, results);
+
+                return Ok(nextQuestionId);
             }
 
-            var quenceId =await interviewService.UpdateAsync(sessionId, surveyId, questionId, quaere, results);
-          
-            return Ok(quenceId);
-                
-         }
+            else
+            {
+                var nextQuestionId = await interviewService.UpdateAsync(sessionId, questionId, results);
+
+                return Ok(nextQuestionId);
+            }
+        }
     }
 }

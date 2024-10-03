@@ -1,19 +1,24 @@
 networks:
   dev:
     driver: bridge  
-services:
 
-  api:
-    image: ${DOCKER_REGISTRY-}api
+services:
+  onlinesurvey.api:
+    image: ${DOCKER_REGISTRY-}onlinesurvey.api
     container_name: api_container
     build:
       context: .
-      dockerfile: Api/Dockerfile
+      dockerfile: OnlineSurvey.Api/Dockerfile
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      - "5000:5000"
+      - "5001:5001"
     networks:
       - dev
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=rtx
     depends_on:
       - postgres_data
 
@@ -22,11 +27,11 @@ services:
     restart: always
     container_name: postgres_container
     environment: 
-      - POSTGRES_DB=OnlineSurveyBd
+      - POSTGRES_DB=onlinesurveybd
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
-      - pgdata:/var/lib/postgresql/data 
+      - ./pgdata:/var/lib/postgresql/data 
     ports:
       - 5432:5432
     networks:

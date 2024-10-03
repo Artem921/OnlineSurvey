@@ -2,11 +2,16 @@
 {
     internal class ResultDto
     {
-        public int Id { get; set; }
-        public Dictionary<string, List<string>> Results { get; set; }
-        public ResultDto() 
-        { 
-            Results = new Dictionary<string, List<string>>();
+        public Guid Id { get; set; }
+        public InterviewDto Interview { get; set; } = null!;
+        public int QuestionId { get; set; }
+        public QuestionDto Question { get; set; } =null!;
+        public List<string> Results { get; set; } = null!;
+        public ResultDto() { }
+        public ResultDto(Guid id, List<string> results)
+        {
+            Id = id;
+            Results = results;
         }
 
     }

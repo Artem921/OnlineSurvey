@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>33f80c28-97fd-4547-b954-81ce090adaa6</ProjectGuid>
+    <ProjectGuid>340b5679-fce4-4dd8-bf20-699be63fb9e6</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>onlinesurvey.api</DockerServiceName>

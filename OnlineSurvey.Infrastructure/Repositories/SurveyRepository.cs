@@ -27,7 +27,7 @@ namespace OnlineSurvey.Infrastructure.Repositories
             else return null;
         }
 
-        public async Task<Survey> GetSurveyByIdAsync(int id)
+        public async Task<Survey> GetByIdAsync(int id)
         {
             var survey = await context.Surveys.Include(q => q.Questions)
                                              .ThenInclude(a => a.Answer)

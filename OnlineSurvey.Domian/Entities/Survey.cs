@@ -11,18 +11,21 @@ namespace OnlineSurvey.Domian.Entities
         /// <summary>
         /// описание опроса
         /// </summary>
-        public string Discription { get; set; } = string.Empty;
-        public IEnumerable<Question> Questions { get; set; } = null!;
+        public string Description { get; set; } = string.Empty;
+        public ICollection<Question> Questions { get; set; } = null!;
+        public ICollection<Interview> Interviews { get; set; } = null!;
 
         public Survey() { }
-        private Survey(int id,string name,string discription)
+        private Survey(int id, string name, string description)
         {
-           Id = id;
-           Name = name;
-           Discription = discription;        
-        }   
-        
-        public static Survey Create(int id,string name,string discription) 
+            Id = id;
+            Name = name;
+            Description = description;
+            Questions = new List<Question>();
+            Interviews = new List<Interview>();
+        }
+
+        public static Survey Create(int id, string name, string description)
         {
             if (id <= 0)
             {
@@ -34,11 +37,11 @@ namespace OnlineSurvey.Domian.Entities
                 throw new NullReferenceException($"Свойство{nameof(Name)} класса  {nameof(Survey)} не может быть пустым");
             }
 
-            if (string.IsNullOrEmpty(discription))
+            if (string.IsNullOrEmpty(description))
             {
-                throw new NullReferenceException($"Свойство{nameof(Discription)} класса  {nameof(Survey)} не может быть пустым");
+                throw new NullReferenceException($"Свойство{nameof(Description)} класса  {nameof(Survey)} не может быть пустым");
             }
-            return new Survey(id,name,discription);
+            return new Survey(id, name, description);
         }
     }
 }

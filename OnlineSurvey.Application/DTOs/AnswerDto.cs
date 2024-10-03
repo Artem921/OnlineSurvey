@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string QuestionId { get; set; } = string.Empty;
+        public QuestionDto Question { get; set; }
         public IEnumerable<string> Replys { get; set; }
     }
 }
