@@ -62,11 +62,11 @@ Interview -Result - один к многим (у одного интервью �
 Question - Answer - один к одному ( у одного уникального вопроса может быть только один уникальный вариант ответов)
 ```
 #### Структура бд:
- <sup> ![alt text](Img/survey.png "dfff") </sup>
- <sup> ![alt text](Img/question.png) </sup>
- <sup> ![alt text](Img/answer.png) </sup>
- <sup> ![alt text](Img/interview.png) </sup>
- <sup> ![alt text](Img/result.png) </sup>
+ <sup> ![alt text](Img/survey.png "survey") </sup>
+ <sup> ![alt text](Img/question.png "question") </sup>
+ <sup> ![alt text](Img/answer.png "answer") </sup>
+ <sup> ![alt text](Img/interview.png "interview") </sup>
+ <sup> ![alt text](Img/result.png "result") </sup>
 
 
 
