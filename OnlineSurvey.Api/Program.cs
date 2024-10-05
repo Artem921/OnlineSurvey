@@ -1,15 +1,15 @@
 using Framework.Utils;
 using Microsoft.OpenApi.Models;
-using OnlineSurvey.Api.Mapping;
 using OnlineSurvey.Application;
 using OnlineSurvey.Infrastructure;
-
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers()
               .ConfigureApplicationPartManager(manager => manager.FeatureProviders.Add(new InternalControllerFeatureProvider()))
-              .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+              .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });;
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -35,7 +35,6 @@ builder.Services.AddSwaggerGen(options =>
 
 
 });
-builder.Services.AddInfrastructureMapping();
 builder.Services.RegisterModule<InfrastructureExtension>(builder.Configuration);
 builder.Services.RegisterModule<ApplicationExtension>(builder.Configuration);
 var app = builder.Build();
@@ -45,6 +44,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseRouting();
+app.UseCors(builder => builder.AllowAnyOrigin());
 app.UseHttpsRedirection();
 app.UseSession();
 app.UseAuthorization();

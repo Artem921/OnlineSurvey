@@ -10,11 +10,15 @@ namespace OnlineSurvey.Infrastructure.Configurations
 
         public void Configure(EntityTypeBuilder<Result> builder)
         {
-            builder.ToTable("Results");
+            builder.HasOne(s => s.Interview)
+                .WithMany(s => s.Results)
+                .HasForeignKey(s => s.InterviewId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.Property(r => r.Results)
                 .HasConversion(
                 c => JsonConvert.SerializeObject(c),
-                c => JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(c));
+                c => JsonConvert.DeserializeObject<List<string>>(c));
           
         }
     }

@@ -3,8 +3,7 @@
     internal class AnswerDto
     {
         public int Id { get; set; }
-        public string QuestionId { get; set; } = string.Empty;
-        public QuestionDto Question { get; set; }
-        public IEnumerable<string> Replys { get; set; }
+        public string QuestionId { get; set; } 
+        public  List<string> Replys { get; set; }
     }
 }

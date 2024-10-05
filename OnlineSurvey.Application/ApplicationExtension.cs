@@ -13,6 +13,7 @@ namespace OnlineSurvey.Application
             services.AddInfrastructureMapping();
             services.AddScoped<IInterviewService, InterviewService>();
             services.AddScoped<ISurveyService, SurveyService>();
+            services.AddScoped<IQuestionService, QuestionService>();
 
         }
     }

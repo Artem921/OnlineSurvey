@@ -7,22 +7,18 @@ namespace OnlineSurvey.Domian.Entities
         /// <summary>
         /// Наименование опроса
         /// </summary>
-        public string Name { get; set; } = string.Empty;
+        public string? Name { get; set; } 
         /// <summary>
         /// описание опроса
         /// </summary>
-        public string Description { get; set; } = string.Empty;
-        public ICollection<Question> Questions { get; set; } = null!;
-        public ICollection<Interview> Interviews { get; set; } = null!;
-
+        public string? Description { get; set; }
+        public List<Question> Questions { get; set; } = null!;
         public Survey() { }
         private Survey(int id, string name, string description)
         {
             Id = id;
             Name = name;
             Description = description;
-            Questions = new List<Question>();
-            Interviews = new List<Interview>();
         }
 
         public static Survey Create(int id, string name, string description)

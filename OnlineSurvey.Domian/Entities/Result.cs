@@ -1,31 +1,41 @@
-﻿using OnlineSurvey.Domian.Entities.Base;
-
-namespace OnlineSurvey.Domian.Entities
+﻿namespace OnlineSurvey.Domian.Entities
 {
-    internal class Result: Entity
+    internal class Result
     {
-        public Guid Id { get; set; }
-        public string InterviewId { get; set; } = string.Empty;
-        public int QuestionId { get; set; } 
-        public Interview Interview { get; set; } = null!;
-        public Question Question { get; set; }
+        public Guid? Id { get; set; }
+        public string? InterviewId { get; set; } 
+        public Interview? Interview { get; set; }
+        /// <summary>
+        /// список выбраных вариантов ответов на вопрос
+        /// </summary>
         public List<string> Results { get; set; } = null!;
+        public int QuestionId { get; set; }
         public Result() { }
-        private Result(Guid id, List<string> results)
+        private Result(Guid id, string interviewId,int questionId, List<string> results)
         {
             Id = id;
+            InterviewId = interviewId;
             Results = results;
+            QuestionId = questionId;
         }
 
-        public static Result Create(Guid id, string quaere, List<string> results)
+        public static Result Create(Guid id, string interviewId, int questionId, List<string> results)
         {
-            if (id == Guid.Empty) { throw new ArgumentNullException($" Свойство{nameof(Id)} класса {nameof(Result)} не может быть <= 0"); }
+            if (id == Guid.Empty) { throw new ArgumentNullException($" Свойство{nameof(Id)} класса {nameof(Result)} не может быть пустым"); }
 
-            if (results.Count == 0)
+            if (string.IsNullOrEmpty(interviewId))
+            {
+                throw new NullReferenceException($"Свойство {nameof(InterviewId)} класса {nameof(Result)} не может быть пустым");
+            }
+            if (questionId == 0)
+            {
+                throw new NullReferenceException($"Свойство {nameof(InterviewId)} класса {nameof(Result)} не может быть пустым");
+            }
+            if (results is null)
             {
                 throw new NullReferenceException($"Список  {nameof(Results)} класса {nameof(Result)} не может быть пустым");
             }
-            return new Result(id, results);
+            return new Result(id,interviewId, questionId,results);
         }
     }
 }

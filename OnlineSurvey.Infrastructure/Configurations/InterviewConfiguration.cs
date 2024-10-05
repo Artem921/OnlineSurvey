@@ -8,10 +8,7 @@ namespace OnlineSurvey.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Interview> builder)
         {
-            builder.ToTable("Interview").HasKey(q => q.Id);
-            builder.HasMany(i => i.Results)
-                .WithOne(r => r.Interview )
-                .HasForeignKey(r => r.InterviewId);                
+            
         }
     }
 }

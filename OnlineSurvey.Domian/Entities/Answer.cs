@@ -5,17 +5,19 @@ namespace OnlineSurvey.Domian.Entities
     internal class Answer: Entity
     {
         public int QuestionId { get; set; }
-        public Question Question { get; set; }
-        public IEnumerable<string> Replys { get; set; }
-        public Answer() { }
-        private Answer(int id, int questionId, IEnumerable<string> replys)
+        public Question Question { get; set; } = null!;
+        /// <summary>
+        /// Список вариантов ответов
+        /// </summary>
+        public List<string> Replys { get; set; } = null!;
+        private Answer(int id, int questionId, List<string> replys)
         {
             Id = id;
             QuestionId = questionId;
             Replys = replys;
         }
 
-        public static Answer Create(int id, int questionId, IEnumerable<string> replys)
+        public static Answer Create(int id, int questionId, List<string> replys)
         {
             if (id <= 0)
             {

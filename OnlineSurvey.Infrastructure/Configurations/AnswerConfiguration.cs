@@ -8,8 +8,6 @@ namespace OnlineSurvey.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Answer> builder)
         {
-            builder.ToTable("Answers").HasKey(a => a.Id);
-            builder.Property(q => q.Replys).HasColumnName("Replys");
 
             builder.HasData(
                 Answer.Create(

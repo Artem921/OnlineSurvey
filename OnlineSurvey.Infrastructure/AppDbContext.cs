@@ -8,8 +8,8 @@ namespace OnlineSurvey.Infrastructure
     {
         private readonly IConfiguration configuration;
         public DbSet<Survey> Surveys { get; set; }
-        public DbSet<Answer> Answers { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
         public DbSet<Result> Results { get; set; }
         public DbSet<Interview> Interviews { get; set; }
         public AppDbContext(IConfiguration configuration)
@@ -21,7 +21,8 @@ namespace OnlineSurvey.Infrastructure
         {
             optionsBuilder.UseNpgsql(configuration.GetConnectionString("OnlineSurveyBd"))
                 .UseLoggerFactory(CreateLoggerFactory())
-                .EnableSensitiveDataLogging();
+                .EnableSensitiveDataLogging()
+                .UseLowerCaseNamingConvention();
 
         }
 

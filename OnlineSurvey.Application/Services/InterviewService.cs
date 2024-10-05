@@ -10,59 +10,67 @@ namespace OnlineSurvey.Application.Services
     {
         private readonly IInterviewRepository interviewRepository;
         private readonly ISurveyService surveyService;
-        private readonly IQuestionService questionService;
 
-        public InterviewService(IInterviewRepository interviewRepository, ISurveyService surveyService, IQuestionService questionService)
+        public InterviewService(IInterviewRepository interviewRepository, 
+                                ISurveyService surveyService)
         {
             this.interviewRepository = interviewRepository;
-            this.questionService = questionService;
             this.surveyService = surveyService;
         }
 
         /// <summary>
-        /// Сохраняет новый Interview в бд и возвращает 
+        /// Сохраняет новый Interview в бд 
         /// </summary>
-        /// 
-        public async Task<int> AddAsync(string interviewId, int questionId, List<string> results)
+        /// <returns> возвращает Id следующего вопроса  </returns>
+        public async Task<int> AddAsync(string interviewId,
+                                        int surveyId, 
+                                        int questionId,
+                                        List<string> results)
         {
-            var (interview, id) = await InsertInterview(interviewId, questionId, results);
+            var (interview, lastQuestionId) = await CreatInterview(interviewId, surveyId, questionId, results);
 
             await interviewRepository.AddAsync(interview.Adapt<Interview>());
 
+            var nextQuestionId = questionId;
 
-            if (questionId < id)
+            if (nextQuestionId < lastQuestionId)
             {
-                return questionId += 1;
+                return nextQuestionId += 1;
             }
-            else { return questionId; }
+            else { return nextQuestionId; }
         }
 
         /// <summary>
         /// Вставляет новые данные Interview в бд
         /// </summary>
-        /// 
-        public async Task<int> UpdateAsync(string interviewId, int questionId, List<string> results)
+        /// <returns> возвращает Id последнего следующего вопроса  </returns>
+        public async Task<int> UpdateAsync(string interviewId,
+                                           int surveyId, 
+                                           int questionId, 
+                                           List<string> results)
         {
-            var (interview, id) = await InsertInterview(interviewId, questionId, results);
+            var (interview, lastQuestionId) = await CreatInterview(interviewId, surveyId, questionId, results);
 
             await interviewRepository.UpdateAsync(interview.Adapt<Interview>());
-            if (questionId < id)
+
+            var nextQuestionId = questionId;
+
+            if (nextQuestionId < lastQuestionId)
             {
-                return questionId += 1;
+                return nextQuestionId += 1;
             }
-            else { return questionId; }
+            else { return nextQuestionId; }
         }
 
-        public async Task<(InterviewDto, int)> InsertInterview(string interviewId, int questionId, List<string> results)
+        public async Task<(InterviewDto, int)> CreatInterview(string interviewId, int surveyId, int questionId, List<string> results)
         {
             var interview = new InterviewDto(interviewId);
-            var result = new ResultDto(Guid.NewGuid(), results);
-            result.QuestionId = questionId;
-            var question = await questionService.GetByIdAsync(questionId);
-            var survey = await surveyService.GetByIdAsync(question.Survey.Id);
+            var result = new ResultDto(Guid.NewGuid(), interviewId, questionId, results);
+            var survey = await surveyService.GetByIdAsync(surveyId);
+            var lastQuestionId = await Task.Run(()=>survey.Questions.LastOrDefault().Id);
             interview.Results.Add(result);
-            interview.Surveys.Add(survey.Adapt<SurveyDto>());
-            return (interview, survey.Questions.Last().Id);
+            return (interview, lastQuestionId);
+
         }
     }
 }

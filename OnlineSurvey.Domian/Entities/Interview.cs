@@ -2,16 +2,12 @@
 {
     internal class Interview
     {
-        public string Id { get; set; } = string.Empty;
-        public ICollection<Result> Results { get; set; } = null!;
-        public ICollection<Survey> Surveys { get; set; } = null!;
-
+        public string? Id { get; set; }
+        public List<Result> Results { get; set; } = null!;
         public Interview() { }
         private Interview(string id)
         {
             Id = id;
-            Results = new List<Result>();
-            Surveys = new List<Survey>();
         }
 
         public static Interview Create(string id)

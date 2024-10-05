@@ -4,6 +4,6 @@ namespace OnlineSurvey.Application.Services.Abstraction
 {
     internal interface IQuestionService
     {
-        public Task<QuestionDto> GetByIdAsync(int id);
+        public Task<QuestionDto> GetByIdAsync(int surveyId,int questionId);
     }
 }

@@ -1,30 +1,30 @@
-﻿using Mapster;
-using OnlineSurvey.Application.DTOs;
+﻿using OnlineSurvey.Application.DTOs;
 using OnlineSurvey.Application.Services.Abstraction;
-using OnlineSurvey.Domian.Abstraction;
 
 namespace OnlineSurvey.Application.Services
 {
     internal class QuestionService : IQuestionService
     {
-        private readonly IQuestionsRepository questionsRepository;
+        private readonly ISurveyService surveyService;
 
-        public QuestionService(IQuestionsRepository questionsRepository)
+        public QuestionService(ISurveyService surveyService)
         {
-            this.questionsRepository = questionsRepository;
+            this.surveyService = surveyService;
         }
 
-        public async Task<QuestionDto> GetByIdAsync(int questionId)
+        public async Task<QuestionDto> GetByIdAsync(int surveyId, int questionId)
         {
             if (questionId != null)
             {
-                var question = await questionsRepository.GetByIdAsync(questionId);
-                return question is null ? throw new NullReferenceException($"Вопроса с таким Id не существует {nameof(SurveyService)}") : question.Adapt<QuestionDto>();
+                var surey = await surveyService.GetByIdAsync(surveyId);
+                var question = await Task.Run(() =>surey.Questions.FirstOrDefault(q => q.Id == questionId));
+
+                return question is null ? throw new NullReferenceException($"Вопроса с таким Id не существует {nameof(QuestionService)}") :question;
             }
 
             else
             {
-                throw new ArgumentNullException($" Параметы {nameof(questionId)} метода  GetQuestionByIdAsync  не могут быть пустыми");
+                throw new ArgumentNullException($" Параметр {nameof(questionId)} метода  {nameof(GetByIdAsync)}  не может быть  равен нулю");
             }
         }
     }

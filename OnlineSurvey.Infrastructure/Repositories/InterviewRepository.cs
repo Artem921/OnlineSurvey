@@ -23,46 +23,26 @@ namespace OnlineSurvey.Infrastructure.Repositories
                     await context.SaveChangesAsync();
                     transaction.Commit();
                 }
-                catch  { transaction.Rollback(); }
+                catch { transaction.Rollback(); }
             }
                
         }
-
-        public async Task<Interview?> GetByIdAsync(string id) => await context.Interviews.Include(r => r.Results).FirstOrDefaultAsync(i => i.Id == id);
 
         public async Task UpdateAsync(Interview interview)
         {
-
             using (var transaction = context.Database.BeginTransaction())
             {
                 try
                 {
-                    var interviewOld = await GetByIdAsync(interview.Id);
-                    await DeleteAsync(interviewOld);
-                    await context.Interviews.AddAsync(interview);
+                    var result = interview.Results.FirstOrDefault();
+                    await context.Results.AddAsync(result);
                     await context.SaveChangesAsync();
                     transaction.Commit();
-
                 }
                 catch { transaction.Rollback(); }
-               
-            }
-               
-        }
-        public async Task DeleteAsync(Interview interview) 
-        {
 
-            using (var transaction = context.Database.BeginTransaction())
-            {
-                try
-                {
-                    await Task.Run(() => context.Interviews.Remove(interview));
-                    await context.SaveChangesAsync();
-                }
-                catch { transaction.Rollback(); }
-                
+               
             }
-                        
         }
     }
 }
