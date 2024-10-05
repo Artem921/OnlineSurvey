@@ -3,10 +3,9 @@ using Microsoft.OpenApi.Models;
 using OnlineSurvey.Application;
 using OnlineSurvey.Infrastructure;
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+
 var builder = WebApplication.CreateBuilder(args);
-
-
+builder.Services.AddCors();
 builder.Services.AddControllers()
               .ConfigureApplicationPartManager(manager => manager.FeatureProviders.Add(new InternalControllerFeatureProvider()))
               .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });;
