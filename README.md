@@ -6,7 +6,7 @@ docker-compose up
 ```
 #### Ссылка приложения:
 ```
-http://localhost:5000/swagger/index.html
+https://localhost:5001/swagger/index.html
 ```
 #### Ссылка pgadmin:
 ```
