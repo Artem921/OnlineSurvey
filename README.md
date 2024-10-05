@@ -8,6 +8,7 @@ docker-compose up
 ```
 http://localhost:5000/swagger/index.html
 ```
+#### pgadmin
 #### Ссылка pgadmin:
 ```
 http://localhost:5050/browser/
@@ -74,12 +75,14 @@ Question - Answer - один к одному ( у одного уникальн�
 #### Как работает api:
 ```
 // Возвращает конкретный вопрос (Question) с вариантами ответов, конкретного опроса (Survey)
-async Task<IActionResult>GetQuestionAsync(int questionId)
+async Task<IActionResult>GetQuestionAsync(int surveyId,int questionId)
 
 // Принимает Id опроса, Id опроса.Сохранет вопрос и ответы в бд и возвращает Id следующего вопроса
 // Далее сохраняет в бд и возвращает Id следующего вопроса
-async Task<IActionResult> AddResultAsync(int questionId, List<string> results)
+async Task<IActionResult> AddResultAsync(int surveyId,int questionId, List<string> results)
 ```
+#### Как проверить базу данных:
+##### Авторизуйтесь в [Link Text](#pgadmin)
 
 
 
