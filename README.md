@@ -83,7 +83,7 @@ async Task<IActionResult> AddResultAsync(int surveyId,int questionId, List<strin
 ```
 #### Как проверить базу данных:
 ##### Авторизуйтесь в [pgadmin](#Ссылка-pgadmin) и следуйте чётским указаниям на изображениях.
-
+##
 + <sup> ![alt text](Img/pgadmin.png) </sup>
 + <sup> ![alt text](Img/pgadmin1.png) </sup>
 + <sup> ![alt text](Img/pgadmin2.png) </sup>
