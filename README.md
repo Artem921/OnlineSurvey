@@ -23,7 +23,7 @@ System.InvalidOperationException: Unable to configure HTTPS endpoint. No server 
 ```
 #### Тогда вам нужно сгенерировать самоподписанный сертификат. Для этого запустите PowerShell от имени администратора или оболочку CMD.
 #### Введите следующую инструкцию:
-#### Примечание. У вас должен быть установлен NET.CLI
+####  $\textcolor{yellow}{Примечание}$. У вас должен быть установлен NET.CLI
 PowerShell
 ```
 dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p PASSWORD
