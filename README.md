@@ -34,8 +34,8 @@ CMD
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
-#### PASSWORD -  вашь пароль.
-#### В файле docker-compose.yml, в окружении сервиса onlinesurvey.api укажите свой пароль
+PASSWORD -  вашь пароль.
+В файле docker-compose.yml, в окружении сервиса onlinesurvey.api укажите свой пароль
 ```
  environment:
    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
@@ -49,7 +49,7 @@ dotnet dev-certs https --trust
 + <sup> Mapster </sup>
 + <sup> PostgresSQL </sup>
 
-## <sup> Архитектура </sup>
+### <sup> Архитектура </sup>
 ### <sup> Монолит потроенный на трёхслойной архитектуре. </sup>
 + <sup> .Infrastructure - Здесь вся работа с данными.</sup>
 + <sup> .Domain - Ядро приложени.</sup>
