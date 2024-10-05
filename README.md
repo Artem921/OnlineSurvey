@@ -8,6 +8,13 @@ docker-compose up
 ```
 http://localhost:5000/swagger/index.html
 ```
+#### Ссылка pgadmin:
+```
+http://localhost:5050/browser/
+
+Login: admin@admin.com
+Password: root
+```
 
 ####  Если в конце сборки образа получите ошибку:
 ```
@@ -33,7 +40,7 @@ dotnet dev-certs https --trust
    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
    - ASPNETCORE_Kestrel__Certificates__Default__Password=ВАШЬ ПАРОЛЬ
 ```
-
+#### Скрипт по инициализации базыданных в файле init.sql
 
 #### Стек проекта:
 + <sup> Asp Net Core Web Api </sup>
@@ -55,6 +62,7 @@ Interview -Result - один к многим (у одного интервью �
 Question - Answer - один к одному ( у одного уникального вопроса может быть только один уникальный вариант ответов)
 ```
 Структура бд:
+![alt text](Img/survey.png)
 
 
 
