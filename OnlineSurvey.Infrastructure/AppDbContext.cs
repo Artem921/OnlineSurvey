@@ -25,11 +25,6 @@ namespace OnlineSurvey.Infrastructure
                 .UseLowerCaseNamingConvention();
 
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-        }
         public ILoggerFactory CreateLoggerFactory() =>
             LoggerFactory.Create(builder => { builder.AddConsole(); });
 
