@@ -63,6 +63,10 @@ Question - Answer - один к одному ( у одного уникальн�
 ```
 #### Структура бд:
  <sup> ![alt text](Img/survey.png) </sup>
+ <sup> ![alt text](Img/question.png) </sup>
+ <sup> ![alt text](Img/answer.png) </sup>
+ <sup> ![alt text](Img/interview.png) </sup>
+ <sup> ![alt text](Img/result.png) </sup>
 
 
 
