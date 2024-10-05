@@ -65,8 +65,9 @@ Question - Answer - один к одному ( у одного уникальн�
  <sup> ![alt text](Img/survey.png "survey") </sup>
  <sup> ![alt text](Img/question.png "question") </sup>
  <sup> ![alt text](Img/answer.png "answer") </sup>
- <sup> ![alt text](Img/interview.png "interview") </sup>
  <sup> ![alt text](Img/result.png "result") </sup>
+ <sup> ![alt text](Img/interview.png "interview") </sup>
+
 
 
 
