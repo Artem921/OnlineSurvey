@@ -8,6 +8,13 @@ docker-compose up
 ```
 http://localhost:5000/swagger/index.html
 ```
+#### Ссылка pgadmin:
+```
+http://localhost:5050/browser/
+
+Login: admin@admin.com
+Password: root
+```
 
 ####  Если в конце сборки образа получите ошибку:
 ```
@@ -33,7 +40,7 @@ dotnet dev-certs https --trust
    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
    - ASPNETCORE_Kestrel__Certificates__Default__Password=ВАШЬ ПАРОЛЬ
 ```
-
+#### Скрипт по инициализации базыданных в файле init.sql
 
 #### Стек проекта:
 + <sup> Asp Net Core Web Api </sup>
@@ -54,19 +61,27 @@ Survey - Question - один к многим (у одного опроса мн�
 Interview -Result - один к многим (у одного интервью множество ответов на вопрос)
 Question - Answer - один к одному ( у одного уникального вопроса может быть только один уникальный вариант ответов)
 ```
-Структура бд:
+#### Структура бд:
+ <sup> ![alt text](Img/survey.png "survey") </sup>
+ <sup> ![alt text](Img/question.png "question") </sup>
+ <sup> ![alt text](Img/answer.png "answer") </sup>
+ <sup> ![alt text](Img/result.png "result") </sup>
+ <sup> ![alt text](Img/interview.png "interview") </sup>
+
 
 
 
 #### Как работает api:
 ```
 // Возвращает конкретный вопрос (Question) с вариантами ответов, конкретного опроса (Survey)
-async Task<IActionResult>GetQuestionAsync(int questionId)
+async Task<IActionResult>GetQuestionAsync(int surveyId,int questionId)
 
 // Принимает Id опроса, Id опроса.Сохранет вопрос и ответы в бд и возвращает Id следующего вопроса
 // Далее сохраняет в бд и возвращает Id следующего вопроса
-async Task<IActionResult> AddResultAsync(int questionId, List<string> results)
+async Task<IActionResult> AddResultAsync(int surveyId,int questionId, List<string> results)
 ```
+#### Как проверить базу данных:
+##### Авторизуйтесь в [pgadmin](#Ссылка-pgadmin)
 
 
 
