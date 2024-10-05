@@ -81,7 +81,7 @@ async Task<IActionResult>GetQuestionAsync(int surveyId,int questionId)
 async Task<IActionResult> AddResultAsync(int surveyId,int questionId, List<string> results)
 ```
 #### Как проверить базу данных:
-##### Авторизуйтесь в [pgadmin](#Ссылка pgadmin)
+##### Авторизуйтесь в [pgadmin](#pgadmin)
 
 
 
