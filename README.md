@@ -8,7 +8,6 @@ docker-compose up
 ```
 http://localhost:5000/swagger/index.html
 ```
-#### pgadmin
 #### Ссылка pgadmin:
 ```
 http://localhost:5050/browser/
@@ -82,7 +81,7 @@ async Task<IActionResult>GetQuestionAsync(int surveyId,int questionId)
 async Task<IActionResult> AddResultAsync(int surveyId,int questionId, List<string> results)
 ```
 #### Как проверить базу данных:
-##### Авторизуйтесь в [Link Text](#pgadmin)
+##### Авторизуйтесь в [pgadmin](#Ссылка pgadmin)
 
 
 
