@@ -23,7 +23,7 @@ System.InvalidOperationException: Unable to configure HTTPS endpoint. No server 
 ```
 #### Тогда вам нужно сгенерировать самоподписанный сертификат. Для этого запустите PowerShell от имени администратора или оболочку CMD.
 #### Введите следующую инструкцию:
-####  $\textcolor{yellow}{Примечание}$. У вас должен быть установлен NET.CLI
+####  $\textcolor{yellow}{Примечание}$: У вас должен быть установлен NET.CLI
 PowerShell
 ```
 dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p PASSWORD
@@ -41,7 +41,7 @@ PASSWORD -  вашь пароль.
    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
    - ASPNETCORE_Kestrel__Certificates__Default__Password=ВАШЬ ПАРОЛЬ
 ```
-#### Скрипт по инициализации базыданных в файле init.sql
+####  $\textcolor{yellow}{Скрипт по инициализации базыданных в файле init.sql}$
 
 #### Стек проекта:
 + <sup> Asp Net Core Web Api </sup>
