@@ -22,7 +22,7 @@ namespace OnlineSurvey.Api.Controllers
         /// 
         /// questionId = 1
         /// 
-        [Route("GetQuestion")]
+        [Route("GetQuestion/Search")]
         [HttpGet]
         public async Task<IActionResult> GetQuestionAsync(int surveyId,int questionId)
         {
