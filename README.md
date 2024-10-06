@@ -41,7 +41,7 @@ PASSWORD -  вашь пароль.
    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
    - ASPNETCORE_Kestrel__Certificates__Default__Password=ВАШЬ ПАРОЛЬ
 ```
-####  Скрипт по инициализации базыданных в файле $\textcolor{orange}{ init.sql}$
+####  Скрипт по инициализации базы данных в файле $\textcolor{orange}{ init.sql}$
 
 #### Стек проекта:
 + <sup> Asp Net Core Web Api </sup>
