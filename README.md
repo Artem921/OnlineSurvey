@@ -1,12 +1,13 @@
 ## <sup> Проект реализован в качестве демонстрации api приложения, для  анонимного онлайн опроса. </sup>
 ### Запуск проекта.
 #### Через терминал пройдите в корневую папку проекта и запустите команду:
+
 ```
 docker-compose up
 ```
 #### Ссылка приложения:
 ```
-http://localhost:5000/swagger/index.html
+https://localhost:5001/swagger/index.html
 ```
 #### Ссылка pgadmin:
 ```
@@ -22,7 +23,7 @@ System.InvalidOperationException: Unable to configure HTTPS endpoint. No server 
 ```
 #### Тогда вам нужно сгенерировать самоподписанный сертификат. Для этого запустите PowerShell от имени администратора или оболочку CMD.
 #### Введите следующую инструкцию:
-#### Примечание. У вас должен быть установлен NET.CLI
+####  $\textcolor{yellow}{Примечание}$. У вас должен быть установлен NET.CLI
 PowerShell
 ```
 dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p PASSWORD
@@ -33,8 +34,8 @@ CMD
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
-#### PASSWORD -  вашь пароль.
-#### В файле docker-compose.yml, в окружении сервиса onlinesurvey.api укажите свой пароль
+PASSWORD -  вашь пароль.
+В файле docker-compose.yml, в окружении сервиса onlinesurvey.api укажите свой пароль
 ```
  environment:
    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
@@ -82,7 +83,7 @@ async Task<IActionResult>GetQuestionAsync(int surveyId,int questionId)
 async Task<IActionResult> AddResultAsync(int surveyId,int questionId, List<string> results)
 ```
 #### Как проверить базу данных:
-##### Авторизуйтесь в [pgadmin](#Ссылка-pgadmin) и следуйте чётским указаниям на изображениях.
+##### Авторизуйтесь в [pgadmin](#Ссылка-pgadmin) и следуйте чётким указаниям на изображениях.
 ##
 + <sup> ![alt text](Img/pgadmin.png) </sup>
 + <sup> ![alt text](Img/pgadmin1.png) </sup>
